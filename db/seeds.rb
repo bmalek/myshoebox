@@ -1,8 +1,8 @@
 puts "Seeding the database ..."
 
-admin_role = Role.find(:first, :conditions => ["title LIKE ?", "Admin"]) || Role.create_by_title("Admin") 
+admin_role = Role.find(:first, :conditions => ["title LIKE ?", "Admin"]) || Role.create(:title =>"Admin") 
 
-user_role = Role.find(:first, :conditions => ["title LIKE ?", "User"]) || Role.create_by_title("User")
+user_role = Role.find(:first, :conditions => ["title LIKE ?", "User"]) || Role.create(:title =>"User")
 
 admin_user = User.find(:first, :conditions => ["email LIKE ?", "admin@avacano.com"])
 
