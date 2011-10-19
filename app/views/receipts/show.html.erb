@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Type:</b>
+  <%= @receipt.type %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @receipt.title %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @receipt.amount %>
+</p>
+
+<%= link_to image_tag( @receipt.photo.url(:small) ), @receipt.photo.url(:original) %>
+
+<p>
+  <b>Description:</b>
+  <%= @receipt.description %>
+</p>
+
+<p>
+  <b>Issued at:</b>
+  <%= @receipt.issued_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_receipt_path(@receipt) %> |
+<%= link_to 'Back', receipts_path %>

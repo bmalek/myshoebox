@@ -1,8 +1,18 @@
 namespace :db do
+  
   namespace :admin do
+    
+    desc "Create roles: Admin, User, Accountant and Client."
+    task :install_roles => :environment do
+      puts "Adding necessary Roles to the database..."
+        Role.find(:first, :conditions => ["title LIKE ?", "Admin"]) || Role.create(:title =>"Admin") 
+        Role.find(:first, :conditions => ["title LIKE ?", "User"]) || Role.create(:title =>"User")   
+        Role.find(:first, :conditions => ["title LIKE ?", "Accountant"]) || Role.create(:title =>"Accountant")         
+    end
+      
     desc "Create the Admin and User roles if not exists, and create the admin_user."
-    task :create => :environment do    
-      puts "Seeding the database with admin and user roles..."
+    task :create => :install_roles do    
+      puts "Seeding the database with admin_user..."
       if User.where("roles.title" => 'Admin').includes(:roles).empty?              
         create_admin_user
       else 
@@ -53,7 +63,7 @@ namespace :db do
       else
         
         admin_role = Role.find(:first, :conditions => ["title LIKE ?", "Admin"]) || Role.create(:title =>"Admin") 
-        user_role = Role.find(:first, :conditions => ["title LIKE ?", "User"]) || Role.create(:title =>"User")   
+           
         admin = User.create(attributes)
         # create an admin role and and assign the admin user to that role                  
         admin.roles << admin_role

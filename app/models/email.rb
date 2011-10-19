@@ -4,4 +4,6 @@ class Email < ActiveRecord::Base
       
   validates :address, :presence => true, :uniqueness => true, :format => { :with => addr_frmt }
   
+  belongs_to :user 
+  
 end

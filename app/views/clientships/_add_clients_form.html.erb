@@ -1,0 +1,14 @@
+<h2>User Emails:</h2>
+
+<% @users.each do |user| %>
+  	
+	<%= form_tag clientships_path, :method => 'post' do %>
+	  <p>
+	    <%= user.email %> <br />
+	    <%= hidden_field_tag :client_id, user.id %>
+	    Monthly Fee: <%= text_field_tag :fee, params[:fee] %>
+	    <%= submit_tag "Add as a client", :confirm => 'Are you sure this is your client?' %>
+	  </p>
+	<% end %>
+
+<% end %>

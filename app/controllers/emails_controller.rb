@@ -5,7 +5,7 @@ class EmailsController < ApplicationController
   # GET /emails
   # GET /emails.json
   def index
-    @emails = Email.all
+    @emails = current_user.emails.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,7 +43,7 @@ class EmailsController < ApplicationController
   # POST /emails
   # POST /emails.json
   def create
-    @email = Email.new(params[:email])
+    @email = current_user.emails.build(params[:email])
 
     respond_to do |format|
       if @email.save

@@ -1,0 +1,22 @@
+<%= form_for(@clientship) do |f| %>
+  <% if @clientship.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@clientship.errors.count, "error") %> prohibited this clientship from being saved:</h2>
+
+      <ul>
+      <% @clientship.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :fee %><br />
+    <%= f.text_field :fee %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,9 +1,14 @@
 LaunchSoon::Application.routes.draw do
   
-  devise_for :users
+  resources :clientships
 
+  resources :receipts
+  
   resources :emails
 
+  devise_for :users 
+  
   root :to => 'emails#new'
+ 
   
 end

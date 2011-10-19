@@ -9,11 +9,19 @@ class User < ActiveRecord::Base
   
   has_many :assignments
   has_many :roles, :through => :assignments
+  has_many :receipts
+  
+  has_many :emails
+  
+  has_many :clientships
+  has_many :clients, :through => :clientships
+  has_many :inverse_clientships, :class_name => "Clientship", :foreign_key => "client_id"
+  has_one :accountant, :through => :inverse_clientships, :source => :user
   
   
-  after_create :elevate_to_user_role
+  after_create :take_user_role
   
-  def elevate_to_user_role
+  def take_user_role
     roles << Role.find(:first, :conditions => ["title LIKE ?", "User"])
     save!
     puts 'User role is successfully added!'

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Client Email:</b>
+  <%= @clientship.client.email %>
+</p>
+
+<p>
+  <b>Client Fee:</b>
+  <%= @clientship.fee %>
+</p>
+
+
+<%= link_to 'Edit', edit_clientship_path(@clientship) %> |
+<%= link_to 'Back', clientships_path %>

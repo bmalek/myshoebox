@@ -1,17 +1,36 @@
 authorization do  
 
   role :guest do     
-    has_permission_on :emails, :to => :create
-    has_permission_on :authorization_rules, :to => :read
-    has_permission_on :authorization_usages, :to => :read
+    has_permission_on :users, :to => :create    
   end
   
-  role :user do
-    includes :guest    
-  end    
+  role :user do # this is the registered user in the site
+    includes :guest
+    has_permission_on :receipts, :to => :create     
+    has_permission_on :receipts, :to => [:read, :update, :delete] do
+      if_attribute :user => is { user }
+    end
+        
+  end 
+  
+  role :accountant do
+    includes :user # user role
+    
+    has_permission_on :users, :to => :read # users model
+    has_permission_on :receipts, :to => :read do
+      if_attribute :user => {:accountant => is {user}}
+    end
+    
+    has_permission_on :emails, :to => :create     
+    has_permission_on :emails, :to => [:read, :update, :delete] do
+      if_attribute :user => is { user }
+    end    
+
+        
+  end
   
   role :admin do
-    has_permission_on [:users, :emails, :roles, :assignments], :to => :manage       
+    has_permission_on [:users, :emails, :receipts, :roles, :clientships, :assignments], :to => :manage       
     has_permission_on :authorization_rules, :to => :read
     has_permission_on :authorization_usages, :to => :read
   end

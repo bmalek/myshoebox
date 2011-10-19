@@ -1,0 +1,27 @@
+<h1>Listing clientships</h1>
+
+<br />
+
+<table>
+  <tr>    
+    <th>Client's fee</th>
+    <th>Client's email</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @clientships.each do |clientship| %>
+  <tr>    
+    <td><%= clientship.fee %></td>
+    <td><%= clientship.client.email %></td>
+    <td><%= link_to 'Show', clientship %></td>
+    <td><%= link_to 'Edit', edit_clientship_path(clientship) %></td>
+    <td><%= link_to 'Destroy', clientship, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Add New Clients', new_clientship_path %>
