@@ -16,17 +16,22 @@ authorization do
   role :accountant do
     includes :user # user role
     
+    # Can see the list of all users
     has_permission_on :users, :to => :read # users model
+    
+    # Can see the receipts of his/her clients
     has_permission_on :receipts, :to => :read do
       if_attribute :user => {:accountant => is {user}}
     end
     
+    # Can invite clients 
     has_permission_on :emails, :to => :create     
     has_permission_on :emails, :to => [:read, :update, :delete] do
       if_attribute :user => is { user }
-    end    
-
-        
+    end
+    
+    # Can add users as his/her clients
+    has_permission_on :clientships, :to => :manage # users model             
   end
   
   role :admin do

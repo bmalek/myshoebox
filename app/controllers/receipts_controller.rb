@@ -29,7 +29,7 @@ class ReceiptsController < ApplicationController
   # GET /receipts/new
   # GET /receipts/new.json
   def new
-    @receipt = Receipt.new
+    @receipt = Receipt.new    
 
     respond_to do |format|
       format.html # new.html.erb

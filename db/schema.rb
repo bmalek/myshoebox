@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20111019154948) do
   end
 
   create_table "receipts", :force => true do |t|
-    t.string   "type"
+    t.string   "payment"
     t.string   "title"
     t.string   "amount"
     t.text     "description"

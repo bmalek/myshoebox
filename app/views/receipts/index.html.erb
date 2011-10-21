@@ -1,4 +1,4 @@
-<h1>Listing my receipts</h1>
+<h3>My receipts</h3>
 
 <table>
   <tr>
@@ -14,7 +14,7 @@
 
 <% @receipts.each do |receipt| %>
   <tr>
-    <td><%= receipt.type %></td>
+    <td><%= receipt.payment %></td>
     <td><%= receipt.title %></td>
     <td><%= receipt.amount %></td>
     <td><%= receipt.description %></td>
@@ -26,39 +26,46 @@
 <% end %>
 </table>
 
-<br />
+<br />	
 
-<h1>Listing my client's receipts</h1>
+<%= link_to 'Add A New Receipt', new_receipt_path %>
 
-<% @clients.each do |client| %>
-<b>Client email: <%= client.email %></b>
-	<table>
-	  <tr>
-	    <th>Type</th>
-	    <th>Title</th>
-	    <th>Amount</th>
-	    <th>Description</th>
-	    <th>Issued at</th>
-	    <th></th>
-	    <th></th>
-	    <th></th>
-	  </tr>
+<% unless current_user.roles.find_by_title('Accountant').nil? %>
+
+	<h3>My client's receipts</h3>
 	
-	<% client.receipts.each do |receipt| %>
-	  <tr>
-	    <td><%= receipt.type %></td>
-	    <td><%= receipt.title %></td>
-	    <td><%= receipt.amount %></td>
-	    <td><%= receipt.description %></td>
-	    <td><%= receipt.issued_at %></td>
-	    <td><%= link_to 'Show', receipt %></td>
-	    <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
-	    <td><%= link_to 'Destroy', receipt, confirm: 'Are you sure?', method: :delete %></td>
-	  </tr>
+	<% @clients.each do |client| %>
+	<b>Client email: <%= client.email %></b>
+		<table>
+		  <tr>
+		    <th>Type</th>
+		    <th>Title</th>
+		    <th>Amount</th>
+		    <th>Description</th>
+		    <th>Issued at</th>
+		    <th></th>
+		    <th></th>
+		    <th></th>
+		  </tr>
+		
+		<% client.receipts.each do |receipt| %>
+		  <tr>
+		    <td><%= receipt.payment %></td>
+		    <td><%= receipt.title %></td>
+		    <td><%= receipt.amount %></td>
+		    <td><%= receipt.description %></td>
+		    <td><%= receipt.issued_at %></td>
+		    <td><%= link_to 'Show', receipt %></td>
+		    <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
+		    <td><%= link_to 'Destroy', receipt, confirm: 'Are you sure?', method: :delete %></td>
+		  </tr>
+		<% end %>
+		</table>
 	<% end %>
-	</table>
+	
+	<br />	
+	
+	<%= link_to 'Find More Clients', new_clientship_path %>
+
 <% end %>
 
-<br />
-
-<%= link_to 'New Receipt', new_receipt_path %>

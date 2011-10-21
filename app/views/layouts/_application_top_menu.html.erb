@@ -1,0 +1,34 @@
+<div class="navigation">
+                <div class="container">
+                    <ul class="categories">                    	
+                    	<% if user_signed_in? %>
+							<li><%= link_to "Receipts", receipts_url %>
+								<ul class="children">
+									<li><%= link_to "Add Recipts", new_receipt_url %></li>							
+								</ul>
+							</li>
+							
+							<li><%= link_to "Clients", clientships_url %>
+								<ul class="children">
+									<li><%= link_to "Find Clients", new_clientship_url %></li>							
+								</ul>
+							</li>
+							
+						<% else %>
+							
+						<% end %>                     	                    	                    						
+						
+					</ul>
+				
+                    <ul class="pages">                    	
+                    	<% if user_signed_in? %>                    		                    	                   	                   
+                        	<li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %>                        	
+                        	</li>                        							
+						<% else %>
+							<li><%= link_to "Sign in", new_user_session_url %></li>
+						<% end %>                        
+                        											
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+            </div>

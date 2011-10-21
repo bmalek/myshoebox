@@ -2,31 +2,52 @@
 <html>
 <head>
   <title>LaunchSoon</title>
-  <%= stylesheet_link_tag    "application" %>
+  <%= stylesheet_link_tag  "styles" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
+<body>	
+	   <div id="header">
+            <div class="container">
+                <div class="branding">
+                    <h1 class="logo">
+                        <%= link_to 'REALTORLY', root_url %>
+                        <p>Power to Choose</p>                        
+                    </h1>
+                </div>
+                <form role="search" method="get" id="searchform" class="search">
+                    <input type="text" value="Search..." id="s" class="field">
+                </form>
+                <div class="clear"></div>
+            </div>
+            <%= render "layouts/application_top_menu" %>
+        </div>        
+        <div id="main">
+            <div class="container">
+            	<p id="email"><%= current_user.email if current_user %></p>                                                                                   
+                <div class="content">
+                    <div class="page">
+                        <div class="entry">
+                            <div class="thumbnail"></div>
+                            
+							<p class="alert"><%= alert %></p>
+							<%= yield %>	                        
+                        <div class="clear"></div>
+                        </div>                    
+                    </div>                
+				</div>        
 
-<div>
-		
-	<div id="email_subscribe" class="center_display">
-		<div class="user_nav">
-	<% if user_signed_in? %>
-		<%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-	<% else %>
-		<%= link_to "Sign in", new_user_session_url %>
-	<% end %>
-</div>
-		
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-		<%= yield %>
-	</div>
-
-</div>
-
-
+				<div class="sidebar">
+            		<div class="ad">
+                		<h1>Ad</h1>
+                	</div>
+                </div>                
+                
+                <div class="clear"></div>
+       		</div>                             
+   		</div>        
+        <%= render "layouts/application_footer"%>		
 
 </body>
 </html>
+

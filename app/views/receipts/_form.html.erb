@@ -12,8 +12,9 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :type %><br />
-    <%= f.text_field :type %>
+    <%= f.label :payment %><br />
+    <% @payment_type = [["Expense", "Expense"] , ["Income", "Income"]] %>
+    <%= f.select :payment, @payment_type %>
   </div>
   <div class="field">
     <%= f.label :title %><br />
@@ -38,6 +39,6 @@
   </div>
   
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit %> | <%= link_to 'Cancel', receipts_path %>
   </div>
 <% end %>
