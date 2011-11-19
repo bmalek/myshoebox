@@ -1,71 +1,60 @@
-<h3>My receipts</h3>
+<% page_header "Receipts"%>
 
-<table>
-  <tr>
-    <th>Type</th>
-    <th>Title</th>
-    <th>Amount</th>
-    <th>Description</th>
-    <th>Issued at</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<%= radio_button_tag :view, 'list', !view_style_selector %> View list  <%= radio_button_tag :view, 'calendar', view_style_selector %> View calendar
 
-<% @receipts.each do |receipt| %>
-  <tr>
-    <td><%= receipt.payment %></td>
-    <td><%= receipt.title %></td>
-    <td><%= receipt.amount %></td>
-    <td><%= receipt.description %></td>
-    <td><%= receipt.issued_at %></td>
-    <td><%= link_to 'Show', receipt %></td>
-    <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
-    <td><%= link_to 'Destroy', receipt, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div id="list" style="<%= @list_style_display %>">
+	<div class="pagination">
+	<table id="hor-zebra">
+	  <tr>
+	  	<th>Issued at</th>
+	    <th>Type</th>
+	    <th>Title</th>
+	    <th>Amount</th>       
+	    <th></th>
+	    <th></th>
+	    <th></th>
+	  </tr>
+	
+	<% @receipts_list.each do |receipt| %>
+	  <tr>
+	  	<td><%= receipt.issued_at %></td>
+	    <td><%= receipt.payment %></td>
+	    <td><%= receipt.title %></td>
+	    <td><%= receipt.amount %></td>        
+	    <td><%= link_to 'Show', receipt %></td>
+	    <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
+	    <td><%= link_to 'Destroy', receipt, confirm: 'Are you sure?', method: :delete %></td>
+	  </tr>
+	<% end %>
+	</table>
+	</div>
+	
+	<%= will_paginate @receipts_list %>
 
-<br />	
+</div>
+
+<br />
+
+<div id="calendar" style="<%= @calendar_style_display %>" >
+  <h2 id="month">
+    <%= link_to "&lang;".html_safe, :month => (@date.beginning_of_month-1).strftime("%B %Y"), :view => 'calendar' %>
+    <%=h @date.strftime("%B %Y") %>
+    <%= link_to "&rang;".html_safe, :month => (@date.end_of_month+1).strftime("%B %Y"), :view => 'calendar' %>
+  </h2>
+  <%= calendar_for @receipts, :year => @date.year, :month => @date.month do |calendar| %>
+    <%= calendar.head('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday') %>
+    <%= calendar.day(:day_method => :issued_at) do |date, receipts| %>
+      <%= date.day %>
+      <ul>
+        <% for receipt in receipts %>
+          <li><%= link_to h(receipt.title), receipt %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</div>	
 
 <%= link_to 'Add A New Receipt', new_receipt_path %>
 
-<% unless current_user.roles.find_by_title('Accountant').nil? %>
-
-	<h3>My client's receipts</h3>
-	
-	<% @clients.each do |client| %>
-	<b>Client email: <%= client.email %></b>
-		<table>
-		  <tr>
-		    <th>Type</th>
-		    <th>Title</th>
-		    <th>Amount</th>
-		    <th>Description</th>
-		    <th>Issued at</th>
-		    <th></th>
-		    <th></th>
-		    <th></th>
-		  </tr>
-		
-		<% client.receipts.each do |receipt| %>
-		  <tr>
-		    <td><%= receipt.payment %></td>
-		    <td><%= receipt.title %></td>
-		    <td><%= receipt.amount %></td>
-		    <td><%= receipt.description %></td>
-		    <td><%= receipt.issued_at %></td>
-		    <td><%= link_to 'Show', receipt %></td>
-		    <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
-		    <td><%= link_to 'Destroy', receipt, confirm: 'Are you sure?', method: :delete %></td>
-		  </tr>
-		<% end %>
-		</table>
-	<% end %>
-	
-	<br />	
-	
-	<%= link_to 'Find More Clients', new_clientship_path %>
-
-<% end %>
+<br />	
 

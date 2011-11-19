@@ -1,8 +1,10 @@
-<h3>List of Clients</h3>
+<%= stylesheet_link_tag  "styles/table" %>
+
+<% page_header "Clients"%>
 
 <br />
-
-<table>
+<div class="pagination">
+<table id="hor-zebra">
   <tr>    
     <th>Client's fee</th>
     <th>Client's email</th>
@@ -21,7 +23,7 @@
   </tr>
 <% end %>
 </table>
-
+</div>
 <br />
 
 <%= link_to 'Add A New Client', new_clientship_path %>

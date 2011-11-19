@@ -30,7 +30,7 @@
   </div>
   <div class="field">
     <%= f.label :issued_at %><br />
-    <%= f.date_select :issued_at %>
+    <%= f.text_field :issued_at, :value => @receipt.issued_at || h(Date.today) %>
   </div>
   
   <div class="field">

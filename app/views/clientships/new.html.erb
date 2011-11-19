@@ -1,4 +1,12 @@
-<h3>Add A New client</h3>
+
+<% page_header "Add a new client"%>
+
+<div class="column-large">
+    <form role="search" method="get" id="searchform" action="http://workingwireframes.com/magframe/demo/" class="search" name="searchform">
+        <input type="text" value="Search clients by their email..." onblur="if(this.value=='')this.value='Search stories...';" onfocus="if(this.value=='Search stories...')this.value=''" name="s" id="s" class="field"><input type="submit" value="Search" class="button-grey right">
+    </form>
+</div>
+
 
 <%= render 'add_clients_form' %>
 

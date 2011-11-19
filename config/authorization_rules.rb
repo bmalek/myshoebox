@@ -6,8 +6,8 @@ authorization do
   
   role :user do # this is the registered user in the site
     includes :guest
-    has_permission_on :receipts, :to => :create     
-    has_permission_on :receipts, :to => [:read, :update, :delete] do
+    has_permission_on :receipts, :reports, :to => :create     
+    has_permission_on :receipts, :reports, :to => [:read, :update, :delete] do
       if_attribute :user => is { user }
     end
         
@@ -21,7 +21,7 @@ authorization do
     
     # Can see the receipts of his/her clients
     has_permission_on :receipts, :to => :read do
-      if_attribute :user => {:accountant => is {user}}
+      if_attribute :user => { :accountants => contains {user} }
     end
     
     # Can invite clients 
@@ -35,7 +35,7 @@ authorization do
   end
   
   role :admin do
-    has_permission_on [:users, :emails, :receipts, :roles, :clientships, :assignments], :to => :manage       
+    has_permission_on [:users, :emails, :receipts, :roles, :clientships, :reports, :assignments], :to => :manage       
     has_permission_on :authorization_rules, :to => :read
     has_permission_on :authorization_usages, :to => :read
   end

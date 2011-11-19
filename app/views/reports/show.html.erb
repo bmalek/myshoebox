@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @report.title %>
+</p>
+
+<p>
+  <b>Start at:</b>
+  <%= @report.start_at %>
+</p>
+
+<p>
+  <b>End at:</b>
+  <%= @report.end_at %>
+</p>
+
+<h3>Report of Receipts</h3>
+
+<div id="list">
+	<div class="pagination">
+	<table id="hor-zebra">
+	  <tr>
+	  	<th>Issued at</th>
+	    <th>Type</th>
+	    <th>Title</th>
+	    <th>Amount</th>       
+	    <th></th>	    
+	  </tr>
+	
+	<% @receipts.each do |receipt| %>
+	  <tr>
+	  	<td><%= receipt.issued_at %></td>
+	    <td><%= receipt.payment %></td>
+	    <td><%= receipt.title %></td>
+	    <td><%= receipt.amount %></td>        
+	    <td><%= link_to 'Show', receipt %></td>	    
+	  </tr>
+	<% end %>
+	</table>
+	</div>
+	
+	<%= will_paginate @receipts %>
+
+</div>
+
+<br />
+
+
+
+<%= link_to 'Edit', edit_report_path(@report) %> |
+<%= link_to 'Back', reports_path %>

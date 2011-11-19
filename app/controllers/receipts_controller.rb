@@ -6,13 +6,9 @@ class ReceiptsController < ApplicationController
   # GET /receipts.json
   def index
     @receipts = current_user.receipts.all
-    
-    @clients = current_user.clients
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @receipts }
-    end
+    @receipts_list = Receipt.where("user_id" => current_user.id).paginate(:per_page => 2, :page => params[:page])    
+    @date = params[:month] ? Date.parse(params[:month]) : Date.today
+    @view_format = params[:view] || 'list'    
   end
 
   # GET /receipts/1

@@ -1,5 +1,7 @@
 LaunchSoon::Application.routes.draw do
   
+  resources :reports
+
   resources :clientships
 
   resources :receipts

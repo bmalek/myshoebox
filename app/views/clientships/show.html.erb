@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h3>The client's receipts</h3>
+
 <p>
   <b>Client Email:</b>
   <%= @clientship.client.email %>
@@ -13,3 +15,39 @@
 
 <%= link_to 'Edit', edit_clientship_path(@clientship) %> |
 <%= link_to 'Back to clients', clientships_path %>
+
+<p></p>
+<% permitted_to? :read, :clientships do %>
+				
+	<div class="pagination">
+		<table id="hor-zebra">
+		  <tr>
+		  	<th>Issued at</th>
+		    <th>Type</th>
+		    <th>Title</th>
+		    <th>Amount</th>		    		    
+		    <th></th>
+		    <th></th>
+		    <th></th>
+		  </tr>
+		
+		<% @clientship.client.receipts.each do |receipt| %>
+		  <tr class="odd">
+		  	<td><%= receipt.issued_at %></td>
+		    <td><%= receipt.payment %></td>
+		    <td><%= receipt.title %></td>
+		    <td><%= receipt.amount %></td>		    		    
+		    <td><%= link_to 'Show', receipt %></td>
+		    <td><%= link_to 'Edit', edit_receipt_path(receipt) %></td>
+		    <td><%= link_to 'Destroy', receipt, confirm: 'Are you sure?', method: :delete %></td>
+		  </tr>
+		<% end %>
+		</table>
+		</div>	
+	
+	<br />	
+	
+	<%= link_to 'Find More Clients', new_clientship_path %>
+
+<% end %>
+

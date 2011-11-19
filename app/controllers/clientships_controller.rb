@@ -16,7 +16,7 @@ class ClientshipsController < ApplicationController
   # GET /clientships/1
   # GET /clientships/1.json
   def show
-    @clientship = current_user.clientships.find(params[:id])
+    @clientship = current_user.clientships.find(params[:id])    
 
     respond_to do |format|
       format.html # show.html.erb

@@ -1,0 +1,33 @@
+#hor-zebra
+{	
+	margin: 20px 0px 10px 0px;
+	width: 90%;
+	/*text-align: left;*/
+	border-collapse: collapse;
+	padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    color: #eee;
+    background: #444;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+#hor-zebra th
+{	
+	font-weight: bold;
+	border-bottom:1px solid #FFF;
+	text-align: center;
+	padding: 5px;	
+}
+#hor-zebra td
+{
+	padding: 5px;
+	text-align: center;
+	color: #007fff;
+}
+#hor-zebra .odd
+{
+	background: #DDD; 
+}

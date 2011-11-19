@@ -165,6 +165,7 @@ p.meta .comment-number a:hover {
 }
 .field {
     margin: 0;
+    width: 80%;
     padding: 8px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;
@@ -254,6 +255,12 @@ Header
 #header .branding h1.logo a:visited {
     color: #fff
 }
+
+#header .branding h1.logo p.slogan {
+	color: #007fff;
+	font-size: 17px;	
+	font-style: italic;
+} 
 /* Navigation */
 #header .navigation {
     margin: 10px 0 0 0;
@@ -285,7 +292,7 @@ Header
 }
 #header .navigation ul.categories li a:hover {
     color: #fff;
-    background: #388dbf;
+    background: #007fff;
     /*: ;
     -webkit-border-top-left-radius: 4px;
     -webkit-border-top-right-radius: 4px;
@@ -296,7 +303,7 @@ Header
 }
 #header .navigation ul.categories li ul {
     padding: 10px 0 10px 0;
-    background: #388dbf;
+    background: #007fff;
     -webkit-border-bottom-left-radius: 4px;
     -webkit-border-bottom-right-radius: 4px;
     -moz-border-radius-bottomleft: 4px;
@@ -348,7 +355,7 @@ Header
 }
 #header .navigation ul.pages li a:hover {
     color: #fff;
-    background: #388dbf;
+    background: #007fff;
     /*: ;
     -webkit-border-top-left-radius: 4px;
     -webkit-border-top-right-radius: 4px;
@@ -366,7 +373,7 @@ Header
     padding: 10px 45px 8px 10px;
     font-size: 18px;
     width: 245px;
-    background: url(../images/search.png) 260px 0 no-repeat #fff;
+    background: url(../search.png) 260px 0 no-repeat #fff;
     border: none;
 }
 #header .field:focus {
@@ -814,40 +821,43 @@ Category
     border-bottom: 1px solid #eee;
 }
 /* Pagination */
-.next-page {
+/*.next-page {
     width: 100px;
     height: 40px;
     display: block;
+}*/
+.pagination {	
+	text-align: center;
 }
 .page-number {
     padding: 10px;
-    width: 210px;
-    height: 20px;
+    /*width: 210px;*/
+    /*height: 20px;*/
     text-align: center;
     font-size: 13px;
     color: #aaa;
-    display: block;
+    /*display: block;*/
 }
-.previous-page {
+/*.previous-page {
     width: 100px;
     height: 40px;
     display: block;
-}
+}*/
 .pagination a,
 .pagination a:visited {
     padding: 10px;
     text-align: center;
     text-decoration: none;
     color: #aaa;
-    background: #eee;
+    /*background: #eee;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    display: block;
+    /*display: block;*/
 }
 .pagination a:hover {
-    color: #fff;
-    background: #388dbf;
+    color: #388dbf /*#fff;*/
+    /*background: #388dbf;*/
 }
 /*
 
@@ -867,7 +877,7 @@ Author
     padding: 10px 45px 8px 10px;
     font-size: 18px;
     width: 510px;
-    background: url(../assets/images/search.png) 525px 0 no-repeat #fff;
+    background: url(../search.png) 525px 0 no-repeat #fff;
 }
 .column-large .field:focus {
     padding: 9px 44px 7px 9px;
@@ -888,8 +898,8 @@ Sidebar
 #main .ad {
     padding: 100px 0 0 0;
     width: 300px;
-    height: 150px;
-    background: #333;
+    min-height: 200px;    
+        
 }
 #main .ad h1 {
     text-align: center;
@@ -983,24 +993,24 @@ Footer
 }
 #footer ul.social li.dribbble a,
 #footer ul.social li.dribbble a:visited {
-    background: url(../images/dribbble.png) no-repeat #ea4c88
+    background: url(../dribbble.png) no-repeat #ea4c88
 }
 #footer ul.social li.facebook a,
 #footer ul.social li.facebook a:visited {
-    background: url(../images/facebook.png) no-repeat #3a5998
+    background: url(../facebook.png) no-repeat #3a5998
 }
 #footer ul.social li.flickr a,
 #footer ul.social li.flickr a:visited {
-    background: url(../images/flickr.png) no-repeat #ff0084
+    background: url(../flickr.png) no-repeat #ff0084
 }
 #footer ul.social li.rss a,
 #footer ul.social li.rss a:visited {
-    background: url(../assets/images/rss.png) no-repeat #f58730
+    background: url(../rss.png) no-repeat #f58730
 }
 #footer ul.social li.rss a:hover {
-    background: url(../assets/images/rss.png) no-repeat #388dbf
+    background: url(../rss.png) no-repeat #388dbf
 }
 #footer ul.social li.twitter a,
 #footer ul.social li.twitter a:visited {
-    background: url(../images/twitter.png) no-repeat #35d2fb
+    background: url(../twitter.png) no-repeat #35d2fb
 }

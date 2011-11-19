@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019154948) do
+ActiveRecord::Schema.define(:version => 20111025190222) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "role_id"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(:version => 20111019154948) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+  end
+
+  create_table "reports", :force => true do |t|
+    t.string   "title"
+    t.date     "start_at"
+    t.date     "end_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "roles", :force => true do |t|

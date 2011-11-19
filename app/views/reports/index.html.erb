@@ -1,0 +1,29 @@
+
+<% page_header "Reports"%>
+
+<div class="pagination">
+<table id="hor-zebra">
+  <tr>
+    <th>Title</th>
+    <th>Start at</th>
+    <th>End at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @reports.each do |report| %>
+  <tr>
+    <td><%= report.title %></td>
+    <td><%= report.start_at %></td>
+    <td><%= report.end_at %></td>
+    <td><%= link_to 'Show', report %></td>
+    <td><%= link_to 'Edit', edit_report_path(report) %></td>
+    <td><%= link_to 'Destroy', report, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+
+<%= link_to 'New Report', new_report_path %>
