@@ -6,17 +6,14 @@ class Receipt < ActiveRecord::Base
   
   validates_presence_of :user_id, :payment, :issued_at, :payment
   
-  has_attached_file :photo, :styles => { :small => "150x150>" }#,   
-  #:url => "/assets/receipts/:id/:style/:basename.:extension",
-  #:path => ":rails_root/app/assets/receipts/:id/:style/:basename.:extension"
-  
-  #:storage => :s3,
-  #:s3_credentials => "#{RAILS_ROOT}/config/s3.yml",
-  #:path => ":attachment/:id/:style.:extension",
-  #:bucket => 'myshoebox'  
-  #:path => ":class/:attachment/:token/:style.:extension",  
-  #:default_url => "/images/photo01.jpg"
-  
+  has_attached_file :photo, :styles => { :small => "150x150>" },   
+    #:url => "/assets/receipts/:id/:style/:basename.:extension",
+    #:path => ":rails_root/app/assets/receipts/:id/:style/:basename.:extension"
+    #:default_url => "/images/photo01.jpg"    
+    :storage => :s3,
+    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",    
+    :bucket => 'myshoebox' # "paperclip-example-bucket-#{Rails.env}"           
+    
   #validates_attachment_presence :photo
   validates_attachment_size :photo, :less_than => 5.megabytes
   validates_attachment_content_type :photo, :content_type => ['image/tiff', 'image/jpeg', 'image/jpg', 
