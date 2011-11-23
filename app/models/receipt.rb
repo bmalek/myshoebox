@@ -11,7 +11,7 @@ class Receipt < ActiveRecord::Base
     #:path => ":rails_root/app/assets/receipts/:id/:style/:basename.:extension"
     #:default_url => "/images/photo01.jpg"    
     :storage => :s3,
-    :s3_credentials => "#{RAILS_ROOT}/config/s3.yml",    
+    :s3_credentials => "#{Rails.root}/config/s3.yml",    
     :bucket => 'myshoebox' # "paperclip-example-bucket-#{Rails.env}"           
     
   #validates_attachment_presence :photo
